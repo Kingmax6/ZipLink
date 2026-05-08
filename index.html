@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZipLink - Encurtador Rápido</title>
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#7c3aed">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #0d1117;
+            color: #e6edf3;
+            font-family: 'Segoe UI', Arial;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container { max-width: 500px; margin: 0 auto; }
+        h1 { 
+            text-align: center; 
+            color: #7c3aed; 
+            margin-bottom: 5px;
+            font-size: 2.2rem;
+        }
+        .sub { 
+            text-align: center; 
+            color: #8b949e; 
+            margin-bottom: 25px; 
+        }
+        input, button {
+            width: 100%;
+            padding: 16px;
+            margin: 8px 0;
+            border-radius: 10px;
+            border: 1px solid #30363d;
+            font-size: 16px;
+        }
+        input { 
+            background: #161b22; 
+            color: white; 
+        }
+        input:focus {
+            outline: 2px solid #7c3aed;
+        }
+        button {
+            background: #7c3aed;
+            color: white;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:active { background: #6d28d9; }
+        #resultado {
+            background: #161b22;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            word-break: break-all;
+            display: none;
+            border: 1px solid #7c3aed;
+        }
+        #historico { margin-top: 30px; }
+        .link-item {
+            background: #21262d;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 8px;
+            font-size: 14px;
+            border-left: 3px solid #7c3aed;
+        }
+        .apagar {
+            float: right;
+            background: #da3633;
+            padding: 4px 8px;
+            border-radius: 5px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📦 ZipLink</h1>
+        <p class="sub">Compacta teus links. Rápido igual ZIP.</p>
+        
+        <input type="url" id="linkOriginal" placeholder="Cola o link gigante aqui...">
+        <button onclick="encurtar()">Compactar Link</button>
+        
+        <div id="resultado">
+            <strong>Link compactado:</strong><br>
+            <span id="linkCurto"></span><br><br>
+            <button onclick="copiar()">📋 Copiar Link</button>
+        </div>
+
+        <div id="historico">
+            <h3>📂 Teus Zips:</h3>
+            <div id="listaLinks"></div>
+        </div>
+    </div>
+
+    <script>
+        // Se abriu um link curto, redireciona na hora
+        if(window.location.hash) {
+            const codigo = window.location.hash.substring(1);
+            const link = localStorage.getItem(codigo);
+            if(link) {
+                document.body.innerHTML = '<h1 style
