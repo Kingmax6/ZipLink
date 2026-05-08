@@ -1,0 +1,16 @@
+{
+  "name": "ZipLink - Encurtador Rápido",
+  "short_name": "ZipLink",
+  "start_url": "/ZipLink/",
+  "display": "standalone",
+  "background_color": "#0d1117",
+  "theme_color": "#7c3aed",
+  "description": "Compacta links igual ZIP. Criado por Kingmax",
+  "icons": [
+    {
+      "src": "https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f4e6.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
